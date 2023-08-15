@@ -62,7 +62,7 @@ def post(id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        LOGGER.info('Admin logged in successfully.')
+        LOGGER.warning('Admin logged in successfully.')
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -100,7 +100,7 @@ def authorized():
         user = User.query.filter_by(username="admin").first()
         login_user(user)
         _save_cache(cache)
-        LOGGER.info('Admin logged in successfully.')
+        LOGGER.warning('Admin logged in successfully.')
     return redirect(url_for('home'))
 
 @app.route('/logout')
